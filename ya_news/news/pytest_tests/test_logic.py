@@ -28,7 +28,7 @@ def test_anonymous_user_cant_create_comment(
     name,
     args
 ):
-    '''Анонимный пользователь не может отправить комментарий.'''
+    """Анонимный пользователь не может отправить комментарий."""
     db_comment_data = Comment.objects.count()
     url = reverse(name, args=args)
     response = client.post(url, data=form_data)
@@ -54,7 +54,7 @@ def test_user_can_create_comment(
     args,
     news
 ):
-    '''Авторизованный пользователь может отправить комментарий.'''
+    """Авторизованный пользователь может отправить комментарий."""
     url = reverse(name, args=args)
     db_comment_data = Comment.objects.count()
     want_to_get = url + '#comments'
@@ -76,10 +76,10 @@ def test_user_can_create_comment(
     ),
 )
 def test_user_cant_use_bad_words(author_client, name, args):
-    '''
+    """
     Если комментарий содержит запрещённые слова, он не будет опубликован,
     а форма вернёт ошибку.
-    '''
+    """
     db_comment_data = Comment.objects.count()
     url = reverse(name, args=args)
     bad_words_data = {'text': f'Какой-то текст, {BAD_WORDS[0]}, еще текст'}
@@ -106,7 +106,7 @@ def test_author_can_delete_comment(
         name,
         args
 ):
-    '''Авторизованный пользователь может удалять свои комментарии.'''
+    """Авторизованный пользователь может удалять свои комментарии."""
     db_comment_data = Comment.objects.count() - COMMENT_CHANGING
     url = reverse(name, args=args)
     response = author_client.post(url)
@@ -130,7 +130,7 @@ def test_other_user_cant_delete_comment_of_another_user(
         name,
         args
 ):
-    '''Авторизованный пользователь не может удалять чужие комментарии.'''
+    """Авторизованный пользователь не может удалять чужие комментарии."""
     db_comment_data = Comment.objects.count()
     url = reverse(name, args=args)
     response = admin_client.post(url)
@@ -155,7 +155,7 @@ def test_author_can_edit_comment(
     author,
     news
 ):
-    '''Авторизованный пользователь может редактировать свои комментарии.'''
+    """Авторизованный пользователь может редактировать свои комментарии."""
     url = reverse(name, args=args)
     response = author_client.post(url, form_data)
     want_to_get = reverse(
@@ -184,7 +184,7 @@ def test_other_user_cant_edit_comment(
     author,
     news
 ):
-    '''Авторизованный пользователь может редактировать чужие комментарии.'''
+    """Авторизованный пользователь может редактировать чужие комментарии."""
     url = reverse(name, args=args)
     response = admin_client.post(url, form_data)
     assert response.status_code == HTTPStatus.NOT_FOUND

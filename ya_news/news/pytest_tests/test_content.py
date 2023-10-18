@@ -11,7 +11,7 @@ HOME_URL = 'news:home'
 @pytest.mark.django_db
 @pytest.mark.usefixtures('news_list')
 def test_news_count(author_client):
-    '''Количество новостей на главной странице — не более 10.'''
+    """Количество новостей на главной странице — не более 10."""
     url = reverse(HOME_URL)
     response = author_client.get(url)
     news_on_page = response.context['object_list']
@@ -22,10 +22,10 @@ def test_news_count(author_client):
 @pytest.mark.django_db
 @pytest.mark.usefixtures('news_list')
 def test_news_order(author_client):
-    '''
+    """
     Новости отсортированы от самой свежей к самой старой.
     Свежие новости в начале списка.
-    '''
+    """
     url = reverse(HOME_URL)
     response = author_client.get(url)
     news_on_page = response.context['object_list']
@@ -48,10 +48,10 @@ def test_comments_order(
     name,
     args
 ):
-    '''
+    """
     Комментарии на странице отдельной новости отсортированы в
     хронологическом порядке: старые в начале списка, новые — в конце.
-    '''
+    """
     url = reverse(name, args=args)
     response = author_client.get(url)
     assert 'news' in response.context
@@ -81,10 +81,10 @@ def test_comment_form_contains_authorized_and_anonymous(
     name,
     args
 ):
-    '''
+    """
     Проверка доступа к форме для отправки комментария для анонимного
     и авторизованного пользователей на странице отдельной новости.
-    '''
+    """
     url = reverse(name, args=args)
     response = user.get(url)
     result = 'form' in response.context

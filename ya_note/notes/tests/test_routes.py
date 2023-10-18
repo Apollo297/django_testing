@@ -27,7 +27,7 @@ class TestRoutes(TestCase):
         )
 
     def test_pages_availability(self):
-        '''Проверяем сраницы, доступыне для всех.'''
+        """Проверяем сраницы, доступыне для всех."""
         urls = (
             ('notes:home', None),
             ('users:login', None),
@@ -54,7 +54,7 @@ class TestRoutes(TestCase):
                     self.assertEqual(response.status_code, status)
 
     def test_redirect_for_anonymous_client(self):
-        '''Проверяем редирект для неавторизованного пользователя.'''
+        """Проверяем редирект для неавторизованного пользователя."""
         login_url = reverse('users:login')
         urls = (
             ('notes:edit', (self.notes.slug,)),
@@ -72,7 +72,7 @@ class TestRoutes(TestCase):
                 self.assertRedirects(response, redirect_url)
 
     def test_page_availability_for_author(self):
-        '''Проверяем доступность страниц для автора.'''
+        """Проверяем доступность страниц для автора."""
         urls = (
             'notes:list', 'notes:success', 'notes:add',
         )

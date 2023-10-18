@@ -17,7 +17,7 @@ from pytest_django.asserts import assertRedirects
     ),
 )
 def test_pages_availability_for_anonymous_user(client, name, args):
-    '''Страницы, доступные анонимному пользователю.'''
+    """Страницы, доступные анонимному пользователю."""
     url = reverse(name, args=args)
     response = client.get(url)
     assert response.status_code == HTTPStatus.OK
@@ -35,10 +35,10 @@ def test_availability_for_author_edit_and_delete_comment(
     name,
     args
 ):
-    '''
+    """
     Страницы удаления и редактирования комментария доступны автору
     комментария.
-    '''
+    """
     url = reverse(name, args=args)
     response = author_client.get(url)
     assert response.status_code == HTTPStatus.OK
@@ -53,11 +53,11 @@ def test_availability_for_author_edit_and_delete_comment(
     ),
 )
 def test_redirect_for_anonymous_client(client, name, args):
-    '''
+    """
     При попытке перейти на страницу редактирования или удаления
     комментария анонимный пользователь перенаправляется на
     страницу авторизации.
-    '''
+    """
     login_url = reverse('users:login')
     url = reverse(name, args=args)
     expected_url = f'{login_url}?next={url}'
@@ -71,11 +71,11 @@ def test_availability_for_other_users(
         admin_client,
         pk_for_args_comment
 ):
-    '''
+    """
     Авторизованный пользователь не может зайти на страницы
     редактирования или удаления чужих комментариев
     (возвращается ошибка 404).
-    '''
+    """
     url = reverse(name, args=pk_for_args_comment)
     response = admin_client.get(url)
     assert response.status_code == HTTPStatus.NOT_FOUND

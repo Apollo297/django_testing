@@ -28,10 +28,10 @@ class TestListPage(TestCase):
         )
 
     def test_authorized_client_has_form(self):
-        '''
+        """
         Проверяем, что пользователю передаётся форма.
         У неавторизованного пользоват. форма не отображается.
-        '''
+        """
         urls = (
             ('notes:add', None),
             ('notes:edit', (self.notes.slug,)),
@@ -45,11 +45,11 @@ class TestListPage(TestCase):
                 self.assertIsInstance(response.context['form'], NoteForm)
 
     def test_notes_list_for_different_users(self):
-        '''
+        """
         Отдельная заметка передаётся на страницу со списком заметок в списке
         object_list в словаре context;
         Списки заметок пользователей не перемешиваются между собой.
-        '''
+        """
         users_notes = (
             (self.author_client, True),
             (self.not_author_client, False),
