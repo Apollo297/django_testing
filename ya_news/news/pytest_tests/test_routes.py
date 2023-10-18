@@ -17,9 +17,7 @@ from pytest_django.asserts import assertRedirects
     ),
 )
 def test_pages_availability_for_anonymous_user(client, name, args):
-    '''
-    Страницы, доступные анонимному пользователю
-    '''
+    '''Страницы, доступные анонимному пользователю.'''
     url = reverse(name, args=args)
     response = client.get(url)
     assert response.status_code == HTTPStatus.OK
@@ -38,7 +36,8 @@ def test_availability_for_author_edit_and_delete_comment(
     args
 ):
     '''
-    Страницы удаления и редактирования комментария доступны автору комментария.
+    Страницы удаления и редактирования комментария доступны автору
+    комментария.
     '''
     url = reverse(name, args=args)
     response = author_client.get(url)
