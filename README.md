@@ -1,7 +1,63 @@
-# Django testing  
-## Если вы успели выполнить все домашние задания — ваш финальный проект готов.
-Перенесите тесты из ваших проектов в данный репозиторий (**django_testing**), который появился в вашем аккаунте.  
-В итоге должна получиться следующая структура репозитория:
+# Django testing
+
+## Цель работы:
+**В данной работе мною были написаны тесты для проекта на unittest и pytest.**</br>
+Коллекция тестов проверяет:
+- доступ к страницам и возможность действий для пользователей с разным видом прав;
+- корректный возврат ошибок и переадресацию;
+- отсутствие смешивания данных разных пользователей;
+- уникальность и постраничный вывод данных;
+- автоматическое формирование данных в случае, если пользователем они не были указаны;
+- сортировку и проверку на запрещённые слова
+
+### Используемые технологии:
+![image](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![image](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+
+**библиотеки:**
+
+![unittest](https://img.shields.io/badge/unittest-00599C.svg?style=for-the-badge&logo=python&logoColor=white)
+![pytest](https://img.shields.io/badge/pytest-0A9EDC.svg?style=for-the-badge&logo=pytest&logoColor=white)
+
+## Установка:
+
+Если Python не установлен, скачайте и установите его с [официального сайта](https://www.python.org/downloads/).
+### Системные требования
+
+- **Версия Python**: 3.9 или выше
+- **Операционная система**: Windows / macOS / Linux
+
+Клонировать репозиторий и перейти в него в командной строке:
+```python
+git clone git@github.com:Apollo297/django_testing.git
+```
+```python
+cd django_testing
+```
+Cоздать и активировать виртуальное окружение:
+```python
+python3 -m venv env
+```
+```python
+source env/bin/activate
+```
+Установить зависимости из файла requirements.txt:
+```python
+python3 -m pip install --upgrade pip
+```
+```python
+pip install -r requirements.txt
+```
+Выполнить миграции:
+```python
+python3 manage.py migrate
+```
+Запустить проект:
+```python
+python3 manage.py runserver
+```
+
 ```
 Dev
  └── django_testing
@@ -9,7 +65,7 @@ Dev
      │   ├── news
      │   │   ├── fixtures/
      │   │   ├── migrations/
-     │   │   ├── pytest_tests/   <- Директория с вашими тестами pytest для проекта ya_news
+     │   │   ├── pytest_tests/   <- Директория с тестами pytest для проекта ya_news
      │   │   ├── __init__.py
      │   │   ├── admin.py
      │   │   ├── apps.py
@@ -24,7 +80,7 @@ Dev
      ├── ya_note
      │   ├── notes
      │   │   ├── migrations/
-     │   │   ├── tests/          <- Директория с вашими тестами unittest для проекта ya_note
+     │   │   ├── tests/          <- Директория с тестами unittest для проекта ya_note
      │   │   ├── __init__.py
      │   │   ├── admin.py
      │   │   ├── apps.py
@@ -41,12 +97,3 @@ Dev
      ├── requirements.txt
      └── structure_test.py
 ```
-
-## После копирования тестов, написанных в ходе прохождения спринта, для проверки готовности проекта к сдаче необходимо выполнить 4 действия:
-1. Создать и активировать виртуальное окружение; установить зависимости из файла `requirements.txt`;
-2. Запустить скрипт для `run_tests.sh` из корневой директории проекта:
-```sh
-bash run_tests.sh
-```
-
-**Если все проверки успешно выполнились, проект можно отправлять на ревью.**
