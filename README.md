@@ -98,3 +98,5 @@ Dev
      ├── requirements.txt
      └── structure_test.py
 ```
+
+**Автор: Нечепуренко Алексей**
